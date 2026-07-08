@@ -26,12 +26,13 @@ if city_input:
         chain3=prompt3 | model | parser,
 
     )
-    result=parallel_chain.invoke({"city": city_input})
+    with st.spinner(f"Gathering all the required data for {city_input}"):
+        result=parallel_chain.invoke({"city": city_input})
 
-    st.subheader("Best places")
-    st.write(result["chain1"])
-    st.subheader("Best Food")
-    st.write(result["chain2"])
-    st.subheader("Best timetable")
-    st.write(result["chain3"])
+        st.subheader("Best places")
+        st.write(result["chain1"])
+        st.subheader("Best Food")
+        st.write(result["chain2"])
+        st.subheader("Best timetable")
+        st.write(result["chain3"])
     
