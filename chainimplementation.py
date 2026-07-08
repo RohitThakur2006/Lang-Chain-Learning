@@ -18,11 +18,14 @@ prompt=ChatPromptTemplate([
 ])
 
 query=st.text_input("Your query")
+chains=prompt | model | parser
+output=chains.invoke({
+    "query": query
+    })
 
-combined=prompt.invoke({
-    "query":query
-})
-
-output=model.invoke(combined)
-parsing=parser.invoke(output)
-st.write(parsing)
+# combined=prompt.invoke({
+#     "query":query
+# })
+# output=model.invoke(combined)
+# parsing=parser.invoke(output)
+st.write(output)
